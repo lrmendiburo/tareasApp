@@ -1,3 +1,53 @@
 {
-    "users": []
+    "usuarios": [
+        {
+            "id": "1",
+            "nombre": "Juan Pérez",
+            "user": "juanperez",
+            "pass": "pass123",
+            "role": "ROLE_ADMIN",
+            "tareas": [
+                "1",
+                "2"
+            ]
+        },
+        {
+            "id": "2",
+            "nombre": "María Gómez",
+            "user": "mariagomez",
+            "pass": "pass456",
+            "role": "ROLE_USER",
+            "tareas": [
+                "3"
+            ]
+        },
+        {
+            "id": "3",
+            "nombre": "Carlos López",
+            "user": "carloslopez",
+            "pass": "pass789",
+            "role": "ROLE_USER",
+            "tareas": []
+        }
+    ],
+    "tareas": [
+        {
+            "id": "1",
+            "nombre": "Tarea 1",
+            "descripcion": "Descripción de la tarea 1",
+            "estado": "TAREA_PENDIENTE"
+        },
+        {
+            "id": "2",
+            "nombre": "Tarea 2",
+            "descripcion": "Descripción de la tarea 2",
+            "estado": "TAREA_EN_PROGRESO"
+        },
+        {
+            "id": "3",
+            "nombre": "Tarea 3",
+            "descripcion": "Descripción de la tarea 3",
+            "estado": "TAREA_COMPLETADA"
+        }
+    ]
 }

@@ -6,8 +6,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,12 +18,13 @@ import { MatTabsModule } from '@angular/material/tabs';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-
+    RouterModule,
 
     // Material
     MatCardModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatIconModule,
     MatInputModule,
     MatTabsModule
   ],
@@ -34,6 +38,13 @@ export class LoginComponent {
     pass: ['', Validators.required],
   })
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+    private router: Router,
+    private authService: AuthService) { }
+
+  entrar() {
+    this.authService.entrar();
+    this.router.navigate(['/tareas']);
+  }
 
 }

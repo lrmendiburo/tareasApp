@@ -24,7 +24,10 @@
                         *ngIf="myForm.controls['pass'].errors?.['required'] && myForm.controls['pass'].touched">Campo
                         Obligatorio.</mat-hint>
                 </mat-form-field>
-                <button mat-flat-button class="full-width">Aceptar</button>
+                <button mat-flat-button class="full-width" (click)="entrar()">
+                    <mat-icon>login</mat-icon>
+                    Aceptar
+                </button>
             </form>
 
         </mat-card-content>

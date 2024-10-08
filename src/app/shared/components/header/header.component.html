@@ -1,0 +1,15 @@
+<mat-toolbar color="primary" class="bordes-rounded ">
+    <button mat-button [routerLink]="['/tareas']">
+        <mat-icon>list_alt</mat-icon>
+        Tareas
+    </button>
+    <button mat-button [routerLink]="['/usuarios']">
+        <mat-icon>group</mat-icon>
+        Usuarios
+    </button>
+    <span class="spacer"></span>
+    <button mat-button (click)="salir()">
+        <mat-icon>logout</mat-icon>
+        Salir
+    </button>
+</mat-toolbar>
