@@ -1,53 +1,48 @@
-{
-    "usuarios": [
-        {
-            "id": "1",
-            "nombre": "Juan Pérez",
-            "user": "juanperez",
-            "pass": "pass123",
-            "role": "ROLE_ADMIN",
-            "tareas": [
-                "1",
-                "2"
-            ]
-        },
-        {
-            "id": "2",
-            "nombre": "María Gómez",
-            "user": "mariagomez",
-            "pass": "pass456",
-            "role": "ROLE_USER",
-            "tareas": [
-                "3"
-            ]
-        },
-        {
-            "id": "3",
-            "nombre": "Carlos López",
-            "user": "carloslopez",
-            "pass": "pass789",
-            "role": "ROLE_USER",
-            "tareas": []
-        }
-    ],
-    "tareas": [
-        {
-            "id": "1",
-            "nombre": "Tarea 1",
-            "descripcion": "Descripción de la tarea 1",
-            "estado": "TAREA_PENDIENTE"
-        },
-        {
-            "id": "2",
-            "nombre": "Tarea 2",
-            "descripcion": "Descripción de la tarea 2",
-            "estado": "TAREA_EN_PROGRESO"
-        },
-        {
-            "id": "3",
-            "nombre": "Tarea 3",
-            "descripcion": "Descripción de la tarea 3",
-            "estado": "TAREA_COMPLETADA"
-        }
-    ]
-}
+{  
+  "usuarios": [  
+    {  
+      "id": "1",  
+      "nombre": "Juan Pérez",  
+      "user": "juanp",  
+      "pass": "123456",  
+      "role": "ROLE_ADMIN"  
+    },  
+    {  
+      "id": "2",  
+      "nombre": "Ana Gómez",  
+      "user": "anag",  
+      "pass": "password",  
+      "role": "ROLE_USER"  
+    },  
+    {  
+      "id": "3",  
+      "nombre": "Luis Fernández",  
+      "user": "luisf",  
+      "pass": "qwerty",  
+      "role": "ROLE_USER"  
+    }  
+  ],  
+  "tareas": [  
+    {  
+      "id": "1",  
+      "nombre": "Implementar login",  
+      "descripcion": "Desarrollar la funcionalidad de inicio de sesión.",  
+      "estado": "TAREA_EN_PROGRESO",  
+      "usuario_responsable": "1"  
+    },  
+    {  
+      "id": "2",  
+      "nombre": "Crear base de datos",  
+      "descripcion": "Diseñar y crear la base de datos para el proyecto.",  
+      "estado": "TAREA_PENDIENTE",  
+      "usuario_responsable": "2"  
+    },  
+    {  
+      "id": "3",  
+      "nombre": "Realizar pruebas",  
+      "descripcion": "Ejecución de pruebas unitarias y de integración.",  
+      "estado": "TAREA_COMPLETADA",  
+      "usuario_responsable": "3"  
+    }  
+  ]  
+}  

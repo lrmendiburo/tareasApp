@@ -1,0 +1,30 @@
+.demo-table {
+    width: 100%;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+    border-color: currentColor;
+    background-color: #0F2424;
+}
+
+.mat-mdc-header-row {
+    background-color: #004F4F;
+}
+
+.margin-b {
+    margin-bottom: 10px;
+}
+
+.boton-delete {
+    color: rgb(236, 58, 58);
+}
+
+.boton-delete:hover {
+    background-color: rgb(56, 0, 0);
+}

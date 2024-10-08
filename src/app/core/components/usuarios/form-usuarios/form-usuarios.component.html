@@ -1,0 +1,50 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content class="mat-typography">
+
+    <form class="example-form" [formGroup]="myForm">
+
+        <!-- Nombre -->
+        <mat-form-field class="example-full-width margin-b">
+            <mat-label>Nombre:</mat-label>
+            <input type="text" matInput formControlName="nombre" placeholder="Introduzca el nombre...">
+            <mat-error *ngIf="myForm.controls['nombre'].errors?.['required'] && myForm.controls['nombre'].touched">
+                El Nombre es requerido</mat-error>
+        </mat-form-field>
+
+        <!-- User -->
+        <mat-form-field class="example-full-width margin-b">
+            <mat-label>User:</mat-label>
+            <input type="text" matInput formControlName="user" placeholder="Introduzca el user...">
+            <mat-error *ngIf="myForm.controls['user'].errors?.['required'] && myForm.controls['user'].touched">
+                El User es requerido</mat-error>
+        </mat-form-field>
+
+        <!-- Password -->
+        <mat-form-field class="example-full-width margin-b">
+            <mat-label>Password:</mat-label>
+            <input type="password" matInput formControlName="pass" placeholder="Introduzca el password...">
+            <mat-error *ngIf="myForm.controls['pass'].errors?.['required'] && myForm.controls['pass'].touched">
+                El Password es requerido</mat-error>
+        </mat-form-field>
+
+        <!-- Role -->
+        <mat-form-field class="example-full-width">
+            <mat-label>Seleccione el Rol</mat-label>
+            <mat-select formControlName="role">
+                <mat-option *ngFor="let role of roles" [value]="role">{{ role }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="myForm.controls['role'].errors?.['required'] && myForm.controls['role'].touched">
+                El Rol es requerido</mat-error>
+        </mat-form-field>
+
+    </form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" *ngIf="!esEditar; editarTemplate"
+        [disabled]="myForm.invalid">Crear</button>
+    <ng-template #editarTemplate>
+        <button mat-button [mat-dialog-close]="true" [disabled]="myForm.invalid">Editar</button>
+    </ng-template>
+</mat-dialog-actions>

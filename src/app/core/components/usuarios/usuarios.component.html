@@ -1,1 +1,46 @@
-<p>usuarios works!</p>
+<button mat-flat-button class="margin-b" (click)="openDialog(null)">
+    <mat-icon>add</mat-icon>
+    Agregar
+</button>
+
+<table mat-table [dataSource]="usuarios" class="mat-elevation-z8 demo-table">
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let usuario">{{usuario.id}}</td>
+    </ng-container>
+
+    <!-- Nombre Column -->
+    <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let usuario">{{usuario.nombre}}</td>
+    </ng-container>
+
+    <!-- User Column -->
+    <ng-container matColumnDef="user">
+        <th mat-header-cell *matHeaderCellDef>User</th>
+        <td mat-cell *matCellDef="let usuario">{{usuario.user}}</td>
+    </ng-container>
+
+    <!-- Rol Column -->
+    <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef>Rol</th>
+        <td mat-cell *matCellDef="let usuario">{{usuario.role | rol}}</td>
+    </ng-container>
+
+    <!-- Delete Column -->
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td mat-cell *matCellDef="let usuario">
+            <button mat-button class="boton-delete" (click)="eliminar(usuario); $event.stopPropagation();">
+                <mat-icon>delete</mat-icon>
+                Eliminar
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row (click)="openDialog(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
