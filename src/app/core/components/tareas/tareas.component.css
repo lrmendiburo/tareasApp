@@ -16,3 +16,31 @@
 .mat-mdc-header-row {
     background-color: #004F4F;
 }
+
+.margin-b {
+    margin-bottom: 10px;
+}
+
+.boton-delete {
+    color: rgb(236, 58, 58);
+}
+
+.boton-delete:hover {
+    background-color: rgb(56, 0, 0);
+}
+
+.estado-pendiente:hover {  
+    background-color: #530301 !important;    
+}  
+
+.estado-en-progreso:hover {  
+    background-color: #776b03 !important;
+}  
+
+.estado-completada:hover {  
+    background-color: #59850e !important;
+}
+
+.mat-button-toggle {  
+    transition: background-color 0.3s ease;  
+}  

@@ -1,1 +1,45 @@
-<p>form-tareas works!</p>
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content class="mat-typography">
+
+    <form class="example-form" [formGroup]="myForm">
+
+        <!-- Nombre -->
+        <mat-form-field class="example-full-width margin-b">
+            <mat-label>Nombre:</mat-label>
+            <input type="text" matInput formControlName="nombre" placeholder="Introduzca el nombre...">
+            <mat-error *ngIf="myForm.controls['nombre'].errors?.['required'] && myForm.controls['nombre'].touched">
+                El Nombre es requerido</mat-error>
+        </mat-form-field>
+
+        <!-- Responsable -->
+        <mat-form-field class="example-full-width margin-b">
+            <mat-label>Seleccione el usuario responsable...</mat-label>
+            <mat-select formControlName="usuario_responsable">
+                <mat-option *ngFor="let usuario of usuarios()" [value]="usuario.id">{{ usuario.nombre }} - {{'@'}}{{
+                    usuario.user }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="myForm.controls['usuario_responsable'].errors?.['required'] && myForm.controls['usuario_responsable'].touched">
+                El Responsable es requerido</mat-error>
+        </mat-form-field>
+
+        <!-- Descripcion -->
+        <mat-form-field class="example-full-width">
+            <mat-label>Descripción:</mat-label>
+            <textarea matInput formControlName="descripcion" placeholder="Introduzca la descripción de la tarea..."
+                rows="5"></textarea>
+            <mat-error *ngIf="myForm.controls['descripcion'].errors?.['required'] && myForm.controls['descripcion'].touched">
+                La descripción de la tarea es requerida
+            </mat-error>
+        </mat-form-field>
+
+    </form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" *ngIf="!esEditar; else editarTemplate" [disabled]="myForm.invalid"
+        (click)="enviar()">Crear</button>
+    <ng-template #editarTemplate>
+        <button mat-button [mat-dialog-close]="true" [disabled]="myForm.invalid" (click)="enviar()">Editar</button>
+    </ng-template>
+</mat-dialog-actions>

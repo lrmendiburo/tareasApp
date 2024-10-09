@@ -1,40 +1,43 @@
 html,
 body {
-    height: 100%;
-    margin: 20px;
+  height: 100%;
+  margin: 20px;
 }
 
 body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .bordes-rounded {
-    border-radius: 25px;
+  border-radius: 25px;
 }
 
-.container {
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-  }
-  @media (min-width: 768px) {
-    .container {
-      width: 750px;
-    }
-  }
-  @media (min-width: 992px) {
-    .container {
-      width: 970px;
-    }
-  }
-  @media (min-width: 1200px) {
-    .container {
-      width: 1170px;
-    }
-  }
+.container {  
+  padding-right: 15px;  
+  padding-left: 15px;  
+  margin-right: auto;  
+  margin-left: auto;  
+}  
+
+@media (min-width: 768px) {  
+  .container {  
+    width: 1000px; /* Aumentado de 900px a 1000px */  
+  }  
+}  
+
+@media (min-width: 992px) {  
+  .container {  
+    width: 1200px; /* Aumentado de 1100px a 1200px */  
+  }  
+}  
+
+@media (min-width: 1200px) {  
+  .container {  
+    width: 1400px; /* Aumentado de 1300px a 1400px */  
+  }  
+}  

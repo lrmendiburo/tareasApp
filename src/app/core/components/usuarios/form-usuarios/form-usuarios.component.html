@@ -42,9 +42,9 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" *ngIf="!esEditar; editarTemplate"
-        [disabled]="myForm.invalid">Crear</button>
+    <button mat-button [mat-dialog-close]="true" *ngIf="!esEditar; else editarTemplate" [disabled]="myForm.invalid"
+        (click)="enviar()">Crear</button>
     <ng-template #editarTemplate>
-        <button mat-button [mat-dialog-close]="true" [disabled]="myForm.invalid">Editar</button>
+        <button mat-button [mat-dialog-close]="true" [disabled]="myForm.invalid" (click)="enviar()">Editar</button>
     </ng-template>
 </mat-dialog-actions>

@@ -1,0 +1,7 @@
+::ng-deep .toast-success .mdc-snackbar__surface {
+    background-color: rgb(208, 247, 208) !important;
+}
+
+::ng-deep .toast-error .mdc-snackbar__surface {
+    background-color: rgb(247, 198, 198);
+}

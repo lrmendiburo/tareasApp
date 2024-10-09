@@ -1,4 +1,9 @@
-<table mat-table [dataSource]="tareas" class="mat-elevation-z8 demo-table">
+<button mat-flat-button class="margin-b" (click)="openDialog(null)">
+    <mat-icon>add</mat-icon>
+    Agregar
+</button>
+
+<table mat-table [dataSource]="tareas()" class="mat-elevation-z8 demo-table">
 
     <!-- Id Column -->
     <ng-container matColumnDef="id">
@@ -21,7 +26,30 @@
     <!-- Estado Column -->
     <ng-container matColumnDef="estado">
         <th mat-header-cell *matHeaderCellDef>Estado</th>
-        <td mat-cell *matCellDef="let tarea">{{tarea.estado | estado}}</td>
+        <td mat-cell *matCellDef="let tarea">
+            <mat-button-toggle-group [(value)]="tarea.estado" (change)="cambiarEstado(tarea.id, $event.value)"
+                aria-label="Estado de Tarea">
+                <mat-button-toggle *ngFor="let estado of estados" [value]="estado" (click)="$event.stopPropagation()"
+                    [ngClass]="{  
+                    'estado-pendiente': estado === estadoEnum.pendiente,  
+                    'estado-en-progreso': estado === estadoEnum.en_progreso,  
+                    'estado-completada': estado === estadoEnum.completada  
+                }">
+                    {{estado | estado}}
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+        </td>
+    </ng-container>
+
+    <!-- Delete Column -->
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td mat-cell *matCellDef="let tarea">
+            <button mat-button class="boton-delete" (click)="eliminar(tarea.id); $event.stopPropagation();">
+                <mat-icon>delete</mat-icon>
+                Eliminar
+            </button>
+        </td>
     </ng-container>
 
     <!-- Responsable Column -->
@@ -31,6 +59,6 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row (click)="prueba(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row (click)="openDialog(row.id)" *matRowDef="let row; columns: displayedColumns;"></tr>
 
 </table>

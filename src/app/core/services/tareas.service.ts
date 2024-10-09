@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { environment } from '../../../environments/environments';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Tarea } from '../interfaces/interfaces';
 import { HttpClient } from '@angular/common/http';
 
@@ -10,48 +10,48 @@ import { HttpClient } from '@angular/common/http';
 export class TareasService {
 
   private baseUrl: string = environment.baseUrl;
-  private tareasSubject = new BehaviorSubject<Tarea[]>([]);
-  tareas$: Observable<Tarea[]> = this.tareasSubject.asObservable();
+
+  tareas = signal<Tarea[]>([]);
 
   constructor(private http: HttpClient) { }
 
-  initTareas(): void {
-    this.fetchTareas();
+  getTareas(): Observable<Tarea[]> {
+    return this.http.get<Tarea[]>(`${this.baseUrl}/tareas`)
+      .pipe(tap((res) => this.tareas.set(res)));
   }
 
-  private fetchTareas(): void {
-    this.http.get<Tarea[]>(`${this.baseUrl}/tareas`)
-      .subscribe(tareas => this.tareasSubject.next(tareas));
+  getTareaById(tareaId: string): Observable<Tarea> {
+    return this.http.get<Tarea>(`${this.baseUrl}/tareas/${tareaId}`);
   }
 
   createTarea(tarea: Tarea): Observable<Tarea> {
     return this.http.post<Tarea>(`${this.baseUrl}/tareas`, tarea)
-      .pipe(
-        tap(newTarea => {
-          const currentTareaes = this.tareasSubject.value;
-          this.tareasSubject.next([...currentTareaes, newTarea]);
-        })
-      );
+      .pipe(tap(this._actualizarLista));
   }
 
   updateTarea(tarea: Tarea): Observable<Tarea> {
     return this.http.put<Tarea>(`${this.baseUrl}/tareas/${tarea.id}`, tarea)
+      .pipe(tap(this._actualizarLista));
+  }
+
+  deleteTarea(tareaId: string): Observable<Tarea> {
+    return this.http.delete<Tarea>(`${this.baseUrl}/tareas/${tareaId}`)
       .pipe(
-        tap(() => {
-          const updatedTareaes = this.tareasSubject.value.map(h => h.id === tarea.id ? tarea : h);
-          this.tareasSubject.next(updatedTareaes);
+        tap((_) => {
+          this.tareas.set(this.tareas().filter((tar) => tar.id !== tareaId))
         })
       );
   }
 
-  deleteTarea(id: string): Observable<any> {
-    return this.http.delete<any>(`${this.baseUrl}/tareas/${id}`)
-      .pipe(
-        tap(() => {
-          const updatedTareaes = this.tareasSubject.value.filter(h => h.id !== id);
-          this.tareasSubject.next(updatedTareaes);
-        })
-      );
+  private _actualizarLista = (tarea: Tarea) => {
+    const index = this.tareas().findIndex((tareaSignal) => tareaSignal.id === tarea.id);
+    if (index === -1) {
+      this.tareas.set([...this.tareas(), tarea]);
+    } else {
+      const updatedTareas = this.tareas().slice();
+      updatedTareas[index] = tarea;
+      this.tareas.set(updatedTareas);
+    }
   }
 
 }  
