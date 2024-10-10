@@ -1,6 +1,4 @@
-
-
-<!-- Campo de búsqueda -->
+<!-- Boton Add y Campo de búsqueda -->
 <div class="filter" style="display: flex;">
     <button mat-flat-button class="margin-t" (click)="openDialog(null)">
         <mat-icon>add</mat-icon>
@@ -13,6 +11,7 @@
     </mat-form-field>
 </div>
 
+<!-- Tabla -->
 <table mat-table [dataSource]="usuariosFiltrados" class="mat-elevation-z8 demo-table">
 
     <!-- Id Column -->

@@ -27,14 +27,14 @@
       "id": "1",
       "nombre": "Implementar login",
       "descripcion": "Desarrollar la funcionalidad de inicio de sesión.",
-      "estado": "EN_PROGRESO",
+      "estado": "PENDIENTE",
       "usuario_responsable": "1"
     },
     {
       "id": "2",
       "nombre": "Crear base de datos",
       "descripcion": "Diseñar y crear la base de datos para el proyecto.",
-      "estado": "PENDIENTE",
+      "estado": "EN_PROGRESO",
       "usuario_responsable": "2"
     },
     {
@@ -43,6 +43,13 @@
       "descripcion": "Ejecución de pruebas unitarias y de integración.",
       "estado": "COMPLETADA",
       "usuario_responsable": "3"
+    },
+    {
+      "nombre": "nueva",
+      "descripcion": "s bhj bhds",
+      "usuario_responsable": "3",
+      "estado": "PENDIENTE",
+      "id": "pSL4qU8"
     }
   ]
 }

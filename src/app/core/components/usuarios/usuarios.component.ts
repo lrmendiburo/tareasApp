@@ -12,7 +12,6 @@ import { ToastMsgService } from '../../../shared/services/toast-msg.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Usuario } from '../../interfaces/interfaces';
-import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-usuarios',
@@ -22,7 +21,6 @@ import { MatCardModule } from '@angular/material/card';
 
     // Material
     MatButtonModule,
-    MatCardModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -60,7 +58,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
 
   cargarDatos() {
     const subscriptionU = this.usuarioService.getUsuarios()
-    .subscribe(usuarios => this.usuariosFiltrados.data = usuarios);
+      .subscribe(usuarios => this.usuariosFiltrados.data = usuarios);
     this.subscriptions.add(subscriptionU);
     const subscriptionT = this.tareasService.getTareas().subscribe();
     this.subscriptions.add(subscriptionT);
@@ -72,7 +70,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
       return;
     }
     const subscription = this.usuarioService.deleteUsuario(usuarioId)
-      .subscribe( () => this.applyFilter() );
+      .subscribe(() => this.applyFilter());
     this.toastService.success('deleteOk');
     this.subscriptions.add(subscription);
   }
@@ -84,26 +82,24 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   openDialog(usuarioSelectedId: string | null) {
     const dialogRef = this.dialog.open(FormUsuariosComponent, { data: usuarioSelectedId });
     const subscription = dialogRef.afterClosed()
-      .subscribe( () => this.applyFilter() );
+      .subscribe(() => this.applyFilter());
     this.subscriptions.add(subscription);
   }
 
   checkFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     const lowerFilterValue = filterValue.toLowerCase();
-    if (lowerFilterValue.trim().length > 0) {
-      this.criterio = lowerFilterValue;
-      this.applyFilter();
-    }
+    this.criterio = lowerFilterValue;
+    this.applyFilter();
   }
 
   applyFilter() {
-    const filteredList = this.usuarios().filter(usuario =>  
-      usuario.nombre.toLowerCase().includes(this.criterio) ||  
-      usuario.user.toLowerCase().includes(this.criterio) ||  
-      usuario.role.toLowerCase().includes(this.criterio)  
-    );  
-    this.usuariosFiltrados.data = filteredList; 
+    const filteredList = this.usuarios().filter(usuario =>
+      usuario.nombre.toLowerCase().includes(this.criterio) ||
+      usuario.user.toLowerCase().includes(this.criterio) ||
+      usuario.role.toLowerCase().includes(this.criterio)
+    );
+    this.usuariosFiltrados.data = filteredList;
   }
 
   ngOnDestroy(): void {

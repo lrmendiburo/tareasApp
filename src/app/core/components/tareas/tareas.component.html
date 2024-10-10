@@ -1,9 +1,18 @@
-<button mat-flat-button class="margin-b" (click)="openDialog(null)">
-    <mat-icon>add</mat-icon>
-    Agregar
-</button>
+<!-- Boton Add y Campo de búsqueda -->
+<div class="filter" style="display: flex;">
+    <button mat-flat-button class="margin-t" (click)="openDialog(null)">
+        <mat-icon>add</mat-icon>
+        Agregar
+    </button>
+    <span class="spacer"></span>
+    <mat-form-field>
+        <mat-label>Buscar</mat-label>
+        <input  class="bordes-rounde" matInput (keyup)="checkFilter($event)" placeholder="Introduzca el criterio...">
+    </mat-form-field>
+</div>
 
-<table mat-table [dataSource]="tareas()" class="mat-elevation-z8 demo-table">
+
+<table mat-table [dataSource]="tareasFiltradas" class="mat-elevation-z8 demo-table">
 
     <!-- Id Column -->
     <ng-container matColumnDef="id">
