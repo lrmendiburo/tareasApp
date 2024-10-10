@@ -9,9 +9,9 @@ export class EstadoPipe implements PipeTransform {
   transform(estado: string): string {
 
     switch (estado) {
-      case 'TAREA_EN_PROGRESO':
+      case 'EN_PROGRESO':
         return 'En Progreso';
-      case 'TAREA_COMPLETADA':
+      case 'COMPLETADA':
         return 'Completada';
       default:
         return 'Pendiente';

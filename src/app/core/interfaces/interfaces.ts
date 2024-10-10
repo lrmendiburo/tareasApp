@@ -1,12 +1,12 @@
 export enum Rol {
-    admin = 'ROLE_ADMIN',
-    user = 'ROLE_USER'
+    admin = 'ADMIN',
+    user = 'USER'
 }
 
 export enum Estado {
-    pendiente = 'TAREA_PENDIENTE',
-    en_progreso = 'TAREA_EN_PROGRESO',
-    completada = 'TAREA_COMPLETADA',
+    pendiente = 'PENDIENTE',
+    en_progreso = 'EN_PROGRESO',
+    completada = 'COMPLETADA',
 }
 
 export interface Usuario {

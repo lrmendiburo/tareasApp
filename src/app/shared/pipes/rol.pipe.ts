@@ -9,7 +9,7 @@ export class RolPipe implements PipeTransform {
   transform(rol: string): string {
 
     switch (rol) {
-      case 'ROLE_ADMIN':
+      case 'ADMIN':
         return 'Admin';
       default:
         return 'User';

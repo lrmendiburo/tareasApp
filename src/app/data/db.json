@@ -5,21 +5,21 @@
       "nombre": "Juan Pérez",
       "user": "juanp",
       "pass": "123456",
-      "role": "ROLE_ADMIN"
+      "role": "ADMIN"
     },
     {
       "id": "2",
       "nombre": "Ana Gómez",
       "user": "anag",
       "pass": "password",
-      "role": "ROLE_USER"
+      "role": "USER"
     },
     {
       "id": "3",
       "nombre": "Luis Fernández",
       "user": "luisf",
       "pass": "qwerty",
-      "role": "ROLE_USER"
+      "role": "USER"
     }
   ],
   "tareas": [
@@ -27,21 +27,21 @@
       "id": "1",
       "nombre": "Implementar login",
       "descripcion": "Desarrollar la funcionalidad de inicio de sesión.",
-      "estado": "TAREA_EN_PROGRESO",
+      "estado": "EN_PROGRESO",
       "usuario_responsable": "1"
     },
     {
       "id": "2",
       "nombre": "Crear base de datos",
       "descripcion": "Diseñar y crear la base de datos para el proyecto.",
-      "estado": "TAREA_PENDIENTE",
+      "estado": "PENDIENTE",
       "usuario_responsable": "2"
     },
     {
       "id": "3",
       "nombre": "Realizar pruebas",
       "descripcion": "Ejecución de pruebas unitarias y de integración.",
-      "estado": "TAREA_COMPLETADA",
+      "estado": "COMPLETADA",
       "usuario_responsable": "3"
     }
   ]

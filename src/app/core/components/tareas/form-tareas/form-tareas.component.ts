@@ -77,7 +77,7 @@ export class FormTareasComponent {
       this.toastService.success('updateOk');  
       this.subscriptions.add(subscription);
     } else {
-      tarea.estado = 'TAREA_PENDIENTE' as Estado;
+      tarea.estado = 'PENDIENTE' as Estado;
       const subscription = this.tareaService.createTarea(tarea).subscribe();
       this.toastService.success('createOk');
       this.subscriptions.add(subscription);
