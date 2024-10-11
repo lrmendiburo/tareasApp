@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 // Material
@@ -13,7 +13,7 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { Rol, User } from '../../../core/interfaces/interfaces';
 import { ToastMsgService } from '../../../shared/services/toast-msg.service';
-import { catchError, of } from 'rxjs';
+import { catchError, of, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -34,7 +34,9 @@ import { catchError, of } from 'rxjs';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
+
+  private subscriptions: Subscription = new Subscription();
 
   userToLogin: User = {
     id: '',
@@ -63,7 +65,7 @@ export class LoginComponent {
     this.userToLogin.email = this.myForm.get('email')?.value;
     this.userToLogin.password = this.myForm.get('pass')?.value;
 
-    this.authService.login(this.userToLogin).pipe(
+    const subscription = this.authService.login(this.userToLogin).pipe(
       catchError(err => {
         if (err.status === 400) {
           this.toastService.error('loginNotOk');
@@ -78,6 +80,11 @@ export class LoginComponent {
         this.toastService.success('loginOK');
       }
     });
+    this.subscriptions.add(subscription);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
 }

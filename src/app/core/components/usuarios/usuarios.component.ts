@@ -96,7 +96,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   }
 
   applyFilter() {
-    this.usuarioService.getUsers()
+    const subscription = this.usuarioService.getUsers()
       .subscribe(
         () => {
           const filteredList = this.usuarios().filter(usuario =>
@@ -107,6 +107,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
 
         }
       );
+      this.subscriptions.add(subscription);
   }
 
   ngOnDestroy(): void {

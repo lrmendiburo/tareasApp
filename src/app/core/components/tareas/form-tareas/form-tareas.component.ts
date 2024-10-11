@@ -81,9 +81,10 @@ export class FormTareasComponent {
       // Si no es admin, establece el usuario responsable con el currentUserId  
       this.myForm.patchValue({ usuario_responsable: this.data.currentUserId });
       this.myForm.controls['usuario_responsable'].disable(); // Deshabilita el campo
-      this.usuarioService.getUserById(this.data.currentUserId).subscribe((user) =>
+      const subscription = this.usuarioService.getUserById(this.data.currentUserId).subscribe((user) =>
         this.usuarioNoAdmin = user
       );
+      this.subscriptions.add(subscription);
     }
 
 
