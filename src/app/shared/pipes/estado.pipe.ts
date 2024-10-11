@@ -1,5 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+
+
 @Pipe({
   name: 'estado',
   standalone: true
@@ -7,7 +9,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class EstadoPipe implements PipeTransform {
 
   transform(estado: string): string {
-
     switch (estado) {
       case 'EN_PROGRESO':
         return 'En Progreso';

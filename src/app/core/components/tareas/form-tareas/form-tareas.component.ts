@@ -102,7 +102,6 @@ export class FormTareasComponent {
       this.subscriptions.add(subscription);
     } else {
       tarea.estado = 'PENDIENTE' as Estado;
-      debugger;
       if (!this.esAdmin) {
         tarea.usuario_responsable = this.data.currentUserId;
       }

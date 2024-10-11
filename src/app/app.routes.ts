@@ -1,7 +1,11 @@
 import { Routes } from '@angular/router';
+
 import { AuthGuard } from './auth/guards/auth.guard';
 import { RoleGuard } from './auth/guards/role.guard';
+
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
+
+
 
 export const routes: Routes = [
     { path: '',   redirectTo: '/login', pathMatch: 'full' },

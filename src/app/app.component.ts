@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LoginComponent } from './auth/components/login/login.component';
-import { HeaderComponent } from "./shared/components/header/header.component";
-import { AuthService } from './auth/services/auth.service';
 import { CommonModule } from '@angular/common';
+
+import { LoginComponent } from './auth/components/login/login.component';
+import { HeaderComponent } from './shared/components/header/header.component';
+
+import { AuthService } from './auth/services/auth.service';
+
+
 
 @Component({
   selector: 'app-root',

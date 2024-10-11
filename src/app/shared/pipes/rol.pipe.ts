@@ -1,5 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+
+
 @Pipe({
   name: 'rol',
   standalone: true
@@ -7,7 +9,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class RolPipe implements PipeTransform {
 
   transform(rol: string): string {
-
     switch (rol) {
       case 'ADMIN':
         return 'Admin';

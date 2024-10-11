@@ -1,8 +1,12 @@
 import { Injectable, signal } from '@angular/core';
-import { environment } from '../../../environments/environments';
-import { Rol, User } from '../../core/interfaces/interfaces';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+import { environment } from '../../../environments/environments';
+
+import { Rol, User } from '../../core/interfaces/interfaces';
+
+
 
 @Injectable({
   providedIn: 'root'

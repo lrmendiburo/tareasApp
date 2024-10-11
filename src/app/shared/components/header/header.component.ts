@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
+
+import { AuthService } from '../../../auth/services/auth.service';
+import { ToastMsgService } from '../../services/toast-msg.service'
 
 // Material
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../../auth/services/auth.service';
-import { ToastMsgService } from '../../services/toast-msg.service';
 import { CommonModule } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
+
+
 
 @Component({
   selector: 'app-header',
@@ -16,13 +19,11 @@ import { MatMenuModule } from '@angular/material/menu';
   imports: [
     CommonModule,
     RouterModule,
-
     // Material
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
     MatToolbarModule
-
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
@@ -41,8 +42,8 @@ export class HeaderComponent implements OnInit {
     private toastService: ToastMsgService) { }
 
   ngOnInit(): void {
-    this.nombreUser=JSON.parse(sessionStorage.getItem('user')!).name;
-    this.rolUser=JSON.parse(sessionStorage.getItem('user')!).role;
+    this.nombreUser = JSON.parse(sessionStorage.getItem('user')!).name;
+    this.rolUser = JSON.parse(sessionStorage.getItem('user')!).role;
   }
 
   logout() {

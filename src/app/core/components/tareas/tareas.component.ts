@@ -1,30 +1,36 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal } from '@angular/core';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { TareasService } from '../../services/tareas.service';
+import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
+
 import { Tarea, User } from '../../interfaces/interfaces';
+import { Estado } from '../../interfaces/interfaces';
+
 import { EstadoPipe } from '../../../shared/pipes/estado.pipe';
+
+import { FormTareasComponent } from './form-tareas/form-tareas.component';
+
+import { ToastMsgService } from '../../../shared/services/toast-msg.service';
+import { AuthService } from '../../../auth/services/auth.service';
+import { TareasService } from '../../services/tareas.service';
 import { UsuariosService } from '../../services/usuarios.service';
+
+// Material
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { Subscription } from 'rxjs';
-import { FormTareasComponent } from './form-tareas/form-tareas.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { Estado } from '../../interfaces/interfaces';
-import { CommonModule } from '@angular/common';
-import { ToastMsgService } from '../../../shared/services/toast-msg.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { AuthService } from '../../../auth/services/auth.service';
+
+
 
 @Component({
   selector: 'app-tareas',
   standalone: true,
   imports: [
-    CommonModule,
-    // Pipe
     EstadoPipe,
-
+    CommonModule,
     // Material
     MatButtonModule,
     MatFormFieldModule,
@@ -100,18 +106,18 @@ export class TareasComponent implements OnInit, OnDestroy {
     this.subscriptions.add(subscription);
   }
 
-  openDialog(tareaSelectedId: string | null) {  
-    const dialogRef = this.dialog.open(FormTareasComponent, {   
-      data: {  
-        tareaSelectedId,  
+  openDialog(tareaSelectedId: string | null) {
+    const dialogRef = this.dialog.open(FormTareasComponent, {
+      data: {
+        tareaSelectedId,
         currentUserId: this.currentUserId()
-      }  
-    });  
-    
-    const subscription = dialogRef.afterClosed()  
-      .subscribe(() => this.applyFilter());  
-    this.subscriptions.add(subscription);  
-  }  
+      }
+    });
+
+    const subscription = dialogRef.afterClosed()
+      .subscribe(() => this.applyFilter());
+    this.subscriptions.add(subscription);
+  }
 
   cambiarEstado(tareaId: string, nuevoEstado: Estado) {
     const tareaActual = this.tareas().find(tarea => tarea.id === tareaId);

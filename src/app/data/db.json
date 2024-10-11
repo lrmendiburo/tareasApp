@@ -1,46 +1,32 @@
 {
   "tareas": [
     {
-      "id": "1",
       "nombre": "Implementar login",
       "descripcion": "Desarrollar la funcionalidad de inicio de sesión.",
-      "estado": "PENDIENTE",
-      "usuario_responsable": 1
-    },
-    {
-      "id": "2",
-      "nombre": "Crear base de datos",
-      "descripcion": "Diseñar y crear la base de datos para el proyecto.",
-      "estado": "EN_PROGRESO",
-      "usuario_responsable": 2
-    },
-    {
-      "nombre": "Realizar pruebas",
-      "descripcion": "Ejecución de pruebas unitarias y de integración.",
-      "usuario_responsable": 5,
-      "id": "3",
-      "estado": "COMPLETADA"
-    },
-    {
-      "nombre": "nuevaTarea",
-      "descripcion": "sdfafadfa",
-      "usuario_responsable": 4,
+      "usuario_responsable": 1,
       "estado": "PENDIENTE",
       "id": "PJyfj4f"
     },
     {
-      "nombre": "nuevaTarea3",
-      "descripcion": "kdcbibwsdibiw",
-      "estado": "PENDIENTE",
+      "nombre": "Crear base de datos",
+      "descripcion": "Diseñar y crear la base de datos para el proyecto.",
       "usuario_responsable": 2,
-      "id": "dvwN0e-"
+      "estado": "EN_PROGRESO",
+      "id": "QWs9z0L"
     },
     {
-      "nombre": "duerme",
-      "descripcion": "yaaaaaaaa!",
-      "usuario_responsable": 5,
-      "estado": "PENDIENTE",
-      "id": "E5Szb_I"
+      "nombre": "Realizar pruebas",
+      "descripcion": "Ejecución de pruebas unitarias y de integración.",
+      "usuario_responsable": 3,
+      "estado": "COMPLETADA",
+      "id": "BTrx2bV"
+    },
+    {
+      "nombre": "Subir Repositorio",
+      "descripcion": "Subir repo a GitHub",
+      "usuario_responsable": 1,
+      "id": "Mn3fGkD",
+      "estado": "PENDIENTE"
     }
   ],
   "users": [
@@ -64,20 +50,6 @@
       "name": "user3",
       "role": "USER",
       "id": 3
-    },
-    {
-      "name": "Luis Ramiro",
-      "email": "test4@test.com",
-      "password": "$2a$10$2/ryND1ZKyOKuQZkB/gT5efICcZW7EE0w0wXmgSmf47ICxNN1Zpse",
-      "role": "USER",
-      "id": 4
-    },
-    {
-      "name": "dayi",
-      "email": "test5@test.com",
-      "password": "$2a$10$I52f6IC2Xj9F9Wxv/pRx5.oHbIMMHF42uD9KKV2ngBeNu90gvAqVq",
-      "role": "USER",
-      "id": 5
     }
   ]
 }

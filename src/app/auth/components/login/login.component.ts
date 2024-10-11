@@ -1,6 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { catchError, of, Subscription } from 'rxjs';
+
+import { Rol, User } from '../../../core/interfaces/interfaces';
+
+import { AuthService } from '../../services/auth.service';
+import { ToastMsgService } from '../../../shared/services/toast-msg.service';
 
 // Material
 import { MatButtonModule } from '@angular/material/button';
@@ -9,11 +16,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
-import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { Rol, User } from '../../../core/interfaces/interfaces';
-import { ToastMsgService } from '../../../shared/services/toast-msg.service';
-import { catchError, of, Subscription } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-login',
@@ -22,7 +26,6 @@ import { catchError, of, Subscription } from 'rxjs';
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
-
     // Material
     MatCardModule,
     MatButtonModule,

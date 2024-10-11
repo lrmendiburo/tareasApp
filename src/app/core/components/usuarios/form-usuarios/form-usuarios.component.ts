@@ -1,16 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
+import { Rol, User } from '../../../interfaces/interfaces';
+
+import { UsuariosService } from '../../../services/usuarios.service';
+import { ToastMsgService } from '../../../../shared/services/toast-msg.service';
+
+// Material
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Rol, User } from '../../../interfaces/interfaces';
 import { MatSelectModule } from '@angular/material/select';
-import { UsuariosService } from '../../../services/usuarios.service';
-import { Subscription, tap } from 'rxjs';
-import { ToastMsgService } from '../../../../shared/services/toast-msg.service';
 
 @Component({
   selector: 'app-form-usuarios',
@@ -18,7 +21,6 @@ import { ToastMsgService } from '../../../../shared/services/toast-msg.service';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-
     // Material
     MatButtonModule,
     MatDialogModule,

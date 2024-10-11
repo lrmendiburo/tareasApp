@@ -1,24 +1,30 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { RolPipe } from '../../../shared/pipes/rol.pipe';
-import { UsuariosService } from '../../services/usuarios.service';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { FormUsuariosComponent } from './form-usuarios/form-usuarios.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { Subscription } from 'rxjs';
+
+import { User } from '../../interfaces/interfaces';
+
+import { RolPipe } from '../../../shared/pipes/rol.pipe';
+
+import { FormUsuariosComponent } from './form-usuarios/form-usuarios.component';
+
+import { UsuariosService } from '../../services/usuarios.service';
 import { TareasService } from '../../services/tareas.service';
 import { ToastMsgService } from '../../../shared/services/toast-msg.service';
+
+// Material
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { User } from '../../interfaces/interfaces';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @Component({
   selector: 'app-usuarios',
   standalone: true,
   imports: [
     RolPipe,
-
     // Material
     MatButtonModule,
     MatFormFieldModule,
@@ -107,7 +113,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
 
         }
       );
-      this.subscriptions.add(subscription);
+    this.subscriptions.add(subscription);
   }
 
   ngOnDestroy(): void {

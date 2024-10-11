@@ -29,18 +29,18 @@
     background-color: rgb(56, 0, 0);
 }
 
-.estado-pendiente:hover {  
-    background-color: #530301 !important;    
-}  
+.estado-pendiente:hover {
+    background-color: #530301 !important;
+}
 
-.estado-en-progreso:hover {  
+.estado-en-progreso:hover {
     background-color: #776b03 !important;
-}  
+}
 
-.estado-completada:hover {  
+.estado-completada:hover {
     background-color: #59850e !important;
 }
 
-.mat-button-toggle {  
-    transition: background-color 0.3s ease;  
-}  
+.mat-button-toggle {
+    transition: background-color 0.3s ease;
+}
