@@ -17,6 +17,14 @@ export interface Usuario {
     role: Rol;
 }
 
+export interface User {
+    id: string;
+    name: string;
+    email: string;
+    password: string;
+    role: Rol;
+}
+
 export interface Tarea {
     id: string;
     nombre: string;

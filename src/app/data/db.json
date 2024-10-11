@@ -51,5 +51,28 @@
       "estado": "PENDIENTE",
       "id": "pSL4qU8"
     }
+  ],
+  "users": [
+    {
+      "email": "test2@test.com",
+      "password": "$2a$10$Wu7NEmzj6DRnyvY.tn9sv.DzvbWx6.EcnIVesgzTxi8cD/gx4jPee",
+      "user": "user2",
+      "role": "USER",
+      "id": 2
+    },
+    {
+      "email": "test1@test.com",
+      "password": "$2a$10$FqRCk0nt0yIvf93Oe4GYEO7qTnT5gZLU9aBCY1EAZHTVay5iAv3nu",
+      "name": "user1",
+      "role": "ADMIN",
+      "id": 3
+    },
+    {
+      "email": "test3@test.com",
+      "password": "$2a$10$FoAZaHhWWu6xVOkgfAEsX.3SeYaJTiNk8ZCd5SxOvqjZR0TYwiGHq",
+      "user": "user3",
+      "role": "USER",
+      "id": 4
+    }
   ]
 }

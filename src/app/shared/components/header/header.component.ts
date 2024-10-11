@@ -6,11 +6,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../auth/services/auth.service';
+import { ToastMsgService } from '../../services/toast-msg.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [
+    CommonModule,
     RouterModule,
 
     // Material
@@ -24,14 +27,18 @@ import { AuthService } from '../../../auth/services/auth.service';
 })
 export class HeaderComponent {
 
+  get esAdmin() {
+    return this.authService.hasRole('ADMIN');
+  }
+
   constructor(private router: Router,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private toastService: ToastMsgService) { }
 
-
-  salir() {
-    // TODO: Limpiar datos del auth
+  logout() {
+    this.authService.logout();
     this.router.navigate(['./login']);
-    this.authService.salir();
+    this.toastService.success('logoutOK');
   }
 
 }

@@ -18,8 +18,11 @@ export class ToastMsgService {
     updateOk: 'Elemento modificado con éxito.',
     deleteOk: 'Elemento eliminado con éxito.',
     loginOK: 'Sesión abierta con éxito.',
+    logoutOK: 'Sesión cerrada con éxito.',
     deleteNotOk: 'Borre primero las relaciones de este elemento.',
-    loginNotOk: 'Usuario o contraseña incorrecta.',
+    loginNotOk: 'Email o contraseña incorrecta.',
+    accessNotOk: 'No tiene acceso al recurso solicitado.',
+    loginEmpy: 'Email o contraseña vacios.',
   } as const;
 
   constructor(private snackBar: MatSnackBar) { }

@@ -96,7 +96,6 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   applyFilter() {
     const filteredList = this.usuarios().filter(usuario =>
       usuario.nombre.toLowerCase().includes(this.criterio) ||
-      usuario.user.toLowerCase().includes(this.criterio) ||
       usuario.role.toLowerCase().includes(this.criterio)
     );
     this.usuariosFiltrados.data = filteredList;

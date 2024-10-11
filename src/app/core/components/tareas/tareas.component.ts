@@ -60,6 +60,7 @@ export class TareasComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    debugger;
     this.cargarDatos();
   }
 

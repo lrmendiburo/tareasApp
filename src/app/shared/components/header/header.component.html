@@ -3,12 +3,12 @@
         <mat-icon>list_alt</mat-icon>
         Tareas
     </button>
-    <button mat-button [routerLink]="['/usuarios']">
+    <button mat-button [routerLink]="['/usuarios']" *ngIf="esAdmin">
         <mat-icon>group</mat-icon>
         Usuarios
     </button>
     <span class="spacer"></span>
-    <button mat-button (click)="salir()">
+    <button mat-button (click)="logout()">
         <mat-icon>logout</mat-icon>
         Salir
     </button>

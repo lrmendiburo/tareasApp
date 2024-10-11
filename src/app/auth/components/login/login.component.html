@@ -1,0 +1,39 @@
+<div class="container">
+
+    <mat-card class="card" appearance="raised">
+
+        <mat-card-header style="margin-bottom: 10px;">
+            <mat-card-title>Login</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+
+            <form class="form" [formGroup]="myForm">
+                <mat-form-field class="full-width margin-b">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput formControlName="email" placeholder="Ingrese el Email...">
+                    <mat-error
+                        *ngIf="myForm.controls['email'].errors?.['required'] && myForm.controls['email'].touched">
+                        Campo requerido</mat-error>
+                    <mat-error *ngIf="myForm.controls['email'].errors?.['email'] && !myForm.controls['email'].errors?.['required']">
+                        Ingrese un Email válido</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width margin-b">
+                    <mat-label>Contraseña</mat-label>
+                    <input type="password" matInput placeholder="Ingrese la Contraseña..." formControlName="pass">
+                    <mat-error
+                        *ngIf="myForm.controls['pass'].errors?.['required'] && myForm.controls['pass'].touched">
+                        Campo requerido</mat-error>
+                </mat-form-field>
+                <button mat-flat-button class="full-width" (click)="login()" [disabled]="myForm.invalid">
+                    <mat-icon>login</mat-icon>
+                    Aceptar
+                </button>
+            </form>
+
+        </mat-card-content>
+
+    </mat-card>
+
+</div>
