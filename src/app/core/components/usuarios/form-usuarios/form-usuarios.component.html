@@ -6,24 +6,27 @@
         <!-- Nombre -->
         <mat-form-field class="example-full-width margin-b">
             <mat-label>Nombre:</mat-label>
-            <input type="text" matInput formControlName="nombre" placeholder="Introduzca el nombre...">
-            <mat-error *ngIf="myForm.controls['nombre'].errors?.['required'] && myForm.controls['nombre'].touched">
+            <input type="text" matInput formControlName="name" placeholder="Introduzca el nombre...">
+            <mat-error *ngIf="myForm.controls['name'].errors?.['required'] && myForm.controls['name'].touched">
                 El Nombre es requerido</mat-error>
         </mat-form-field>
 
         <!-- User -->
         <mat-form-field class="example-full-width margin-b">
-            <mat-label>User:</mat-label>
-            <input type="text" matInput formControlName="user" placeholder="Introduzca el user...">
-            <mat-error *ngIf="myForm.controls['user'].errors?.['required'] && myForm.controls['user'].touched">
-                El User es requerido</mat-error>
+            <mat-label>Email:</mat-label>
+            <input type="text" matInput formControlName="email" placeholder="Introduzca el email...">
+            <mat-error *ngIf="myForm.controls['email'].errors?.['required'] && myForm.controls['email'].touched">
+                Campo requerido</mat-error>
+            <mat-error
+                *ngIf="myForm.controls['email'].errors?.['email'] && !myForm.controls['email'].errors?.['required']">
+                Ingrese un Email válido</mat-error>
         </mat-form-field>
 
         <!-- Password -->
         <mat-form-field class="example-full-width margin-b">
             <mat-label>Password:</mat-label>
-            <input type="password" matInput formControlName="pass" placeholder="Introduzca el password...">
-            <mat-error *ngIf="myForm.controls['pass'].errors?.['required'] && myForm.controls['pass'].touched">
+            <input type="password" matInput formControlName="password" placeholder="Introduzca el password...">
+            <mat-error *ngIf="myForm.controls['password'].errors?.['required'] && myForm.controls['password'].touched">
                 El Password es requerido</mat-error>
         </mat-form-field>
 

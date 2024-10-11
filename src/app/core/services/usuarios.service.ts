@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { environment } from '../../../environments/environments';
-import { Usuario } from '../interfaces/interfaces';
+import { User } from '../interfaces/interfaces';
 import { Observable, tap } from 'rxjs';
 
 @Injectable({
@@ -11,49 +11,50 @@ export class UsuariosService {
 
   private baseUrl: string = environment.baseUrl;
 
-  usuarios = signal<Usuario[]>([]);
+  users = signal<User[]>([]);
 
   constructor(private http: HttpClient) { }
 
-  getUsuarios(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(`${this.baseUrl}/usuarios`)
-      .pipe(tap((res) => this.usuarios.set(res)));
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.baseUrl}/users`)
+      .pipe(tap((res) => {
+        this.users.set(res)
+      }));
   }
 
-  getUsuarioById(usuarioId: string): Observable<Usuario> {
-    return this.http.get<Usuario>(`${this.baseUrl}/usuarios/${usuarioId}`);
+  getUserById(userId: string): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/users/${userId}`);
   }
 
-  createUsuario(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(`${this.baseUrl}/usuarios`, usuario)
+  // Register json-server-auth
+  createUser(user: User): Observable<User> {
+    return this.http.post<User>(`${this.baseUrl}/users`, user)
       .pipe(tap(this._actualizarLista));
   }
 
-  updateUsuario(usuario: Usuario): Observable<Usuario> {
-    return this.http.put<Usuario>(`${this.baseUrl}/usuarios/${usuario.id}`, usuario)
+  updateUser(user: User): Observable<User> {
+    return this.http.put<User>(`${this.baseUrl}/users/${user.id}`, user)
       .pipe(tap(this._actualizarLista));
   }
 
-  deleteUsuario(usuarioId: string): Observable<Usuario> {
-    return this.http.delete<Usuario>(`${this.baseUrl}/usuarios/${usuarioId}`)
+  deleteUser(userId: string): Observable<User> {
+    return this.http.delete<User>(`${this.baseUrl}/users/${userId}`)
       .pipe(
         tap((_) => {
-          this.usuarios.set(this.usuarios().filter((usuar) => usuar.id !== usuarioId))
+          this.users.set(this.users().filter((usuar) => usuar.id !== userId))
         })
       );
   }
-  
-  private _actualizarLista = (usuario: Usuario) => {
-    const index = this.usuarios().findIndex((usuarioSignal) => usuarioSignal.id === usuario.id);
+
+  private _actualizarLista = (user: User) => {
+    const index = this.users().findIndex((userSignal) => userSignal.id === user.id);
     if (index === -1) {
-      this.usuarios.set([...this.usuarios(), usuario]);
+      this.users.set([...this.users(), user]);
     } else {
-      const updatedUsuarios = this.usuarios().slice();
-      updatedUsuarios[index] = usuario;
-      this.usuarios.set(updatedUsuarios);
+      const updatedUsers = this.users().slice();
+      updatedUsers[index] = user;
+      this.users.set(updatedUsers);
     }
   }
-
-  
 
 }  

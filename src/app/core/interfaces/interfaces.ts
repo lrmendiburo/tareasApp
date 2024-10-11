@@ -9,14 +9,6 @@ export enum Estado {
     completada = 'COMPLETADA',
 }
 
-export interface Usuario {
-    id: string;
-    nombre: string;
-    user: string;
-    pass: string;
-    role: Rol;
-}
-
 export interface User {
     id: string;
     name: string;

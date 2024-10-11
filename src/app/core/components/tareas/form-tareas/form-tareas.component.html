@@ -12,15 +12,26 @@
         </mat-form-field>
 
         <!-- Responsable -->
-        <mat-form-field class="example-full-width margin-b">
-            <mat-label>Seleccione el usuario responsable...</mat-label>
-            <mat-select formControlName="usuario_responsable">
-                <mat-option *ngFor="let usuario of usuarios()" [value]="usuario.id">{{ usuario.nombre }} - {{'@'}}{{
-                    usuario.user }}</mat-option>
-            </mat-select>
-            <mat-error *ngIf="myForm.controls['usuario_responsable'].errors?.['required'] && myForm.controls['usuario_responsable'].touched">
-                El Responsable es requerido</mat-error>
-        </mat-form-field>
+        <mat-form-field class="example-full-width margin-b" *ngIf="esAdmin">  
+            <mat-label>Seleccione el usuario responsable...</mat-label>  
+            <mat-select formControlName="usuario_responsable">  
+              <mat-option *ngFor="let usuario of usuarios()" [value]="usuario.id">  
+                {{ usuario.name }} - {{ usuario.email }}  
+              </mat-option>  
+            </mat-select>  
+            <mat-error *ngIf="myForm.controls['usuario_responsable'].errors?.['required'] && myForm.controls['usuario_responsable'].touched">  
+              El Responsable es requerido  
+            </mat-error>  
+          </mat-form-field>  
+          
+          <mat-form-field class="example-full-width margin-b" *ngIf="!esAdmin">  
+            <mat-label>Usuario Responsable</mat-label>  
+            <mat-select formControlName="usuario_responsable" [disabled]="!esAdmin">  
+              <mat-option [value]="data.currentUserId">  
+                {{ usuarioNoAdmin.name }} - {{ usuarioNoAdmin.email }}  
+              </mat-option>  
+            </mat-select>  
+          </mat-form-field> 
 
         <!-- Descripcion -->
         <mat-form-field class="example-full-width">

@@ -7,9 +7,19 @@
         <mat-icon>group</mat-icon>
         Usuarios
     </button>
+
     <span class="spacer"></span>
-    <button mat-button (click)="logout()">
-        <mat-icon>logout</mat-icon>
-        Salir
+
+    <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>settings</mat-icon>
+        <strong>{{nombreUser}}</strong> - {{rolUser}}
     </button>
+    <mat-menu #menu="matMenu">
+        <button mat-button (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            Salir
+        </button>
+    </mat-menu>
+
+
 </mat-toolbar>

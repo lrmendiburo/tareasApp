@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { TareasService } from '../../services/tareas.service';
-import { Tarea, Usuario } from '../../interfaces/interfaces';
+import { Tarea, User } from '../../interfaces/interfaces';
 import { EstadoPipe } from '../../../shared/pipes/estado.pipe';
 import { UsuariosService } from '../../services/usuarios.service';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 import { ToastMsgService } from '../../../shared/services/toast-msg.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-tareas',
@@ -45,10 +46,12 @@ export class TareasComponent implements OnInit, OnDestroy {
   estadoEnum = Estado;
   tareasFiltradas = new MatTableDataSource<Tarea>();
   criterio: string = '';
+  currentUserId = signal(0);
 
   constructor(private dialog: MatDialog,
     private tareasService: TareasService,
     private usuarioService: UsuariosService,
+    private authService: AuthService,
     private toastService: ToastMsgService) { }
 
   get tareas() {
@@ -56,23 +59,37 @@ export class TareasComponent implements OnInit, OnDestroy {
   }
 
   get usuarios() {
-    return this.usuarioService.usuarios;
+    return this.usuarioService.users;
   }
 
   ngOnInit(): void {
-    debugger;
-    this.cargarDatos();
+    if (!this.authService.hasRole('ADMIN')) {
+      this.currentUserId.set(JSON.parse(sessionStorage.getItem('user')!).id);
+      this.cargarDatosUser();
+    } else {
+      this.cargarDatos();
+    }
   }
 
   cargarDatos() {
-    const subscriptionU = this.usuarioService.getUsuarios().subscribe();
+    const subscriptionU = this.usuarioService.getUsers().subscribe();
     this.subscriptions.add(subscriptionU);
     const subscriptionT = this.tareasService.getTareas()
       .subscribe(tareas => this.tareasFiltradas.data = tareas);
     this.subscriptions.add(subscriptionT);
   }
 
-  encontrarUsuarioPorTarea(tarea: Tarea): Usuario | undefined {
+  cargarDatosUser() {
+    const subscriptionU = this.usuarioService.getUsers().subscribe();
+    this.subscriptions.add(subscriptionU);
+    const subscriptionT = this.tareasService.getTareasByUser(this.currentUserId())
+      .subscribe(tareas => {
+        this.tareasFiltradas.data = tareas
+      });
+    this.subscriptions.add(subscriptionT);
+  }
+
+  encontrarUsuarioPorTarea(tarea: Tarea): User | undefined {
     return this.usuarios().find(usuario => usuario.id === tarea.usuario_responsable);
   }
 
@@ -83,12 +100,18 @@ export class TareasComponent implements OnInit, OnDestroy {
     this.subscriptions.add(subscription);
   }
 
-  openDialog(tareaSelectedId: string | null) {
-    const dialogRef = this.dialog.open(FormTareasComponent, { data: tareaSelectedId });
-    const subscription = dialogRef.afterClosed()
-      .subscribe(() => this.applyFilter());
-    this.subscriptions.add(subscription);
-  }
+  openDialog(tareaSelectedId: string | null) {  
+    const dialogRef = this.dialog.open(FormTareasComponent, {   
+      data: {  
+        tareaSelectedId,  
+        currentUserId: this.currentUserId()
+      }  
+    });  
+    
+    const subscription = dialogRef.afterClosed()  
+      .subscribe(() => this.applyFilter());  
+    this.subscriptions.add(subscription);  
+  }  
 
   cambiarEstado(tareaId: string, nuevoEstado: Estado) {
     const tareaActual = this.tareas().find(tarea => tarea.id === tareaId);

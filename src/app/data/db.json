@@ -1,78 +1,83 @@
 {
-  "usuarios": [
-    {
-      "id": "1",
-      "nombre": "Juan Pérez",
-      "user": "juanp",
-      "pass": "123456",
-      "role": "ADMIN"
-    },
-    {
-      "id": "2",
-      "nombre": "Ana Gómez",
-      "user": "anag",
-      "pass": "password",
-      "role": "USER"
-    },
-    {
-      "id": "3",
-      "nombre": "Luis Fernández",
-      "user": "luisf",
-      "pass": "qwerty",
-      "role": "USER"
-    }
-  ],
   "tareas": [
     {
       "id": "1",
       "nombre": "Implementar login",
       "descripcion": "Desarrollar la funcionalidad de inicio de sesión.",
       "estado": "PENDIENTE",
-      "usuario_responsable": "1"
+      "usuario_responsable": 1
     },
     {
       "id": "2",
       "nombre": "Crear base de datos",
       "descripcion": "Diseñar y crear la base de datos para el proyecto.",
       "estado": "EN_PROGRESO",
-      "usuario_responsable": "2"
+      "usuario_responsable": 2
     },
     {
-      "id": "3",
       "nombre": "Realizar pruebas",
       "descripcion": "Ejecución de pruebas unitarias y de integración.",
-      "estado": "COMPLETADA",
-      "usuario_responsable": "3"
+      "usuario_responsable": 5,
+      "id": "3",
+      "estado": "COMPLETADA"
     },
     {
-      "nombre": "nueva",
-      "descripcion": "s bhj bhds",
-      "usuario_responsable": "3",
+      "nombre": "nuevaTarea",
+      "descripcion": "sdfafadfa",
+      "usuario_responsable": 4,
       "estado": "PENDIENTE",
-      "id": "pSL4qU8"
+      "id": "PJyfj4f"
+    },
+    {
+      "nombre": "nuevaTarea3",
+      "descripcion": "kdcbibwsdibiw",
+      "estado": "PENDIENTE",
+      "usuario_responsable": 2,
+      "id": "dvwN0e-"
+    },
+    {
+      "nombre": "duerme",
+      "descripcion": "yaaaaaaaa!",
+      "usuario_responsable": 5,
+      "estado": "PENDIENTE",
+      "id": "E5Szb_I"
     }
   ],
   "users": [
-    {
-      "email": "test2@test.com",
-      "password": "$2a$10$Wu7NEmzj6DRnyvY.tn9sv.DzvbWx6.EcnIVesgzTxi8cD/gx4jPee",
-      "user": "user2",
-      "role": "USER",
-      "id": 2
-    },
     {
       "email": "test1@test.com",
       "password": "$2a$10$FqRCk0nt0yIvf93Oe4GYEO7qTnT5gZLU9aBCY1EAZHTVay5iAv3nu",
       "name": "user1",
       "role": "ADMIN",
-      "id": 3
+      "id": 1
+    },
+    {
+      "email": "test2@test.com",
+      "password": "$2a$10$VRC1FRcAd9SE5uFrPI0f0Odj/uqx9v027mAOk.0Zyw/vApu.gKEbG",
+      "name": "user2",
+      "role": "USER",
+      "id": 2
     },
     {
       "email": "test3@test.com",
-      "password": "$2a$10$FoAZaHhWWu6xVOkgfAEsX.3SeYaJTiNk8ZCd5SxOvqjZR0TYwiGHq",
-      "user": "user3",
+      "password": "$2a$10$dJm7tEfysX41Q4adteNHW.7r6Pxp6idx1kSFuVFFgdAJ55yS0hfhm",
+      "name": "user3",
+      "role": "USER",
+      "id": 3
+    },
+    {
+      "name": "Luis Ramiro",
+      "email": "test4@test.com",
+      "password": "$2a$10$2/ryND1ZKyOKuQZkB/gT5efICcZW7EE0w0wXmgSmf47ICxNN1Zpse",
       "role": "USER",
       "id": 4
+    },
+    {
+      "name": "dayi",
+      "email": "test5@test.com",
+      "password": "$2a$10$I52f6IC2Xj9F9Wxv/pRx5.oHbIMMHF42uD9KKV2ngBeNu90gvAqVq",
+      "role": "USER",
+      "id": 5
     }
   ]
 }

@@ -6,10 +6,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Rol, Usuario } from '../../../interfaces/interfaces';
+import { Rol, User } from '../../../interfaces/interfaces';
 import { MatSelectModule } from '@angular/material/select';
 import { UsuariosService } from '../../../services/usuarios.service';
-import { Subscription } from 'rxjs';
+import { Subscription, tap } from 'rxjs';
 import { ToastMsgService } from '../../../../shared/services/toast-msg.service';
 
 @Component({
@@ -38,9 +38,9 @@ export class FormUsuariosComponent implements OnInit {
   private subscriptions: Subscription = new Subscription();
 
   myForm: FormGroup = this.formBuilder.group({
-    nombre: ['', Validators.required],
-    user: ['', Validators.required],
-    pass: ['', Validators.required],
+    name: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required],
     role: ['', Validators.required],
   })
 
@@ -54,7 +54,7 @@ export class FormUsuariosComponent implements OnInit {
     if (this.usuarioSelectedId) {
       this.title = "Editar Usuario";
       this.esEditar = true;
-      const subscription = this.usuarioService.getUsuarioById(this.usuarioSelectedId).subscribe((usuario) => {
+      const subscription = this.usuarioService.getUserById(this.usuarioSelectedId).subscribe((usuario) => {
         this.myForm.patchValue(usuario);
       });
       this.subscriptions.add(subscription);
@@ -62,14 +62,14 @@ export class FormUsuariosComponent implements OnInit {
   }
 
   enviar() {
-    const usuario = this.myForm.value as Usuario;
+    const usuario = this.myForm.value as User;
     if (this.esEditar) {
       usuario.id = this.usuarioSelectedId!;
-      const subscription = this.usuarioService.updateUsuario(usuario).subscribe();
+      const subscription = this.usuarioService.updateUser(usuario).subscribe();
       this.toastService.success('updateOk');
       this.subscriptions.add(subscription);
     } else {
-      const subscription = this.usuarioService.createUsuario(usuario).subscribe();
+      const subscription = this.usuarioService.createUser(usuario).subscribe();
       this.toastService.success('createOk');
       this.subscriptions.add(subscription);
     }

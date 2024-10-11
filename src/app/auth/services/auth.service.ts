@@ -1,8 +1,8 @@
 import { Injectable, signal } from '@angular/core';
 import { environment } from '../../../environments/environments';
 import { Rol, User } from '../../core/interfaces/interfaces';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -53,9 +53,6 @@ export class AuthService {
 
   // Login json-server-auth
   login(user: User): Observable<any> {
-    let params = new URLSearchParams();
-    params.set('email', user.email);
-    params.set('password', user.password);
     return this.http.post<any>(`${this.baseUrl}/login`, user);
   }
 
@@ -102,44 +99,6 @@ export class AuthService {
       return true;
     }
     return false;
-  }
-
-
-
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.baseUrl}/users`)
-      .pipe(tap((res) => this.users.set(res)));
-  }
-
-  // Register json-server-auth
-  createUser(user: User): Observable<User> {
-    return this.http.post<User>(`${this.baseUrl}/register`, user)
-      .pipe(tap(this._actualizarLista));
-  }
-
-  updateUser(user: User): Observable<User> {
-    return this.http.put<User>(`${this.baseUrl}/users/${user.id}`, user)
-      .pipe(tap(this._actualizarLista));
-  }
-
-  deleteUser(userId: string): Observable<User> {
-    return this.http.delete<User>(`${this.baseUrl}/users/${userId}`)
-      .pipe(
-        tap((_) => {
-          this.users.set(this.users().filter((usuar) => usuar.id !== userId))
-        })
-      );
-  }
-
-  private _actualizarLista = (user: User) => {
-    const index = this.users().findIndex((userSignal) => userSignal.id === user.id);
-    if (index === -1) {
-      this.users.set([...this.users(), user]);
-    } else {
-      const updatedUsers = this.users().slice();
-      updatedUsers[index] = user;
-      this.users.set(updatedUsers);
-    }
   }
 
 }  

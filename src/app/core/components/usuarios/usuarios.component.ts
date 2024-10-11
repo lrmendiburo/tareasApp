@@ -11,7 +11,7 @@ import { TareasService } from '../../services/tareas.service';
 import { ToastMsgService } from '../../../shared/services/toast-msg.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Usuario } from '../../interfaces/interfaces';
+import { User } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-usuarios',
@@ -33,9 +33,9 @@ import { Usuario } from '../../interfaces/interfaces';
 })
 export class UsuariosComponent implements OnInit, OnDestroy {
 
-  displayedColumns: string[] = ['id', 'nombre', 'user', 'role', 'delete'];
+  displayedColumns: string[] = ['id', 'name', 'email', 'role', 'delete'];
   private subscriptions: Subscription = new Subscription();
-  usuariosFiltrados = new MatTableDataSource<Usuario>();
+  usuariosFiltrados = new MatTableDataSource<User>();
   criterio: string = '';
 
 
@@ -45,7 +45,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
     private toastService: ToastMsgService) { }
 
   get usuarios() {
-    return this.usuarioService.usuarios;
+    return this.usuarioService.users;
   }
 
   get tareas() {
@@ -57,7 +57,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   }
 
   cargarDatos() {
-    const subscriptionU = this.usuarioService.getUsuarios()
+    const subscriptionU = this.usuarioService.getUsers()
       .subscribe(usuarios => this.usuariosFiltrados.data = usuarios);
     this.subscriptions.add(subscriptionU);
     const subscriptionT = this.tareasService.getTareas().subscribe();
@@ -69,7 +69,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
       this.toastService.error('deleteNotOk');
       return;
     }
-    const subscription = this.usuarioService.deleteUsuario(usuarioId)
+    const subscription = this.usuarioService.deleteUser(usuarioId)
       .subscribe(() => this.applyFilter());
     this.toastService.success('deleteOk');
     this.subscriptions.add(subscription);
@@ -82,7 +82,9 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   openDialog(usuarioSelectedId: string | null) {
     const dialogRef = this.dialog.open(FormUsuariosComponent, { data: usuarioSelectedId });
     const subscription = dialogRef.afterClosed()
-      .subscribe(() => this.applyFilter());
+      .subscribe(() => {
+        this.applyFilter();
+      });
     this.subscriptions.add(subscription);
   }
 
@@ -94,11 +96,17 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   }
 
   applyFilter() {
-    const filteredList = this.usuarios().filter(usuario =>
-      usuario.nombre.toLowerCase().includes(this.criterio) ||
-      usuario.role.toLowerCase().includes(this.criterio)
-    );
-    this.usuariosFiltrados.data = filteredList;
+    this.usuarioService.getUsers()
+      .subscribe(
+        () => {
+          const filteredList = this.usuarios().filter(usuario =>
+            usuario.name.toLowerCase().includes(this.criterio) ||
+            usuario.role.toLowerCase().includes(this.criterio)
+          );
+          this.usuariosFiltrados.data = filteredList;
+
+        }
+      );
   }
 
   ngOnDestroy(): void {

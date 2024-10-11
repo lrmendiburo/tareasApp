@@ -18,7 +18,6 @@ export class RoleGuard implements CanActivate {
     const rolesArray = Array.isArray(roles) ? roles : [roles];
     const hasAccess = rolesArray.some(role => this.authService.hasRole(role));
     if (hasAccess) {
-      debugger;
       return true;
     } else {
       this.toastService.error('accessNotOk');

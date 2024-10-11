@@ -20,6 +20,11 @@ export class TareasService {
       .pipe(tap((res) => this.tareas.set(res)));
   }
 
+  getTareasByUser(userId: number): Observable<Tarea[]> {
+    return this.http.get<Tarea[]>(`${this.baseUrl}/tareas?usuario_responsable=${userId}`)
+      .pipe(tap((res) => this.tareas.set(res)));
+  }
+
   getTareaById(tareaId: string): Observable<Tarea> {
     return this.http.get<Tarea>(`${this.baseUrl}/tareas/${tareaId}`);
   }
